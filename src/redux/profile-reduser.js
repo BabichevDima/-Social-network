@@ -1,8 +1,18 @@
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
 
-export const profileReduser = (state, action) => {
-  switch (action.type) {
+const initialState = {
+  posts: [
+    { id: 1, message: "Hi, how are you?", likesCount: 12 },
+    { id: 2, message: "It's my first post", likesCount: 11 },
+    { id: 3, message: "Blabla", likesCount: 18 },
+    { id: 4, message: "Dada", likesCount: 5 },
+  ],
+  newPostText: "TMS",
+};
+
+export const profileReduser = (state = initialState, { type, payload }) => {
+  switch (type) {
     case ADD_POST:
       const newUser = {
         id: 5,
@@ -13,7 +23,7 @@ export const profileReduser = (state, action) => {
       state.newPostText = "";
       return state;
     case UPDATE_NEW_POST_TEXT:
-      state.newPostText = action.newText;
+      state.newPostText = payload;
       return state;
     default:
       return state;
@@ -26,5 +36,5 @@ export const addPostActionCreator = () => ({
 
 export const updateNewPostActionCreator = (text) => ({
   type: UPDATE_NEW_POST_TEXT,
-  newText: text,
+  payload: text,
 });
