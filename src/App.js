@@ -6,8 +6,7 @@ import { Profile } from "./components/Profile/Profile";
 import { DialogsContainer } from "./components/Dialogs/DialogsContainer";
 import { BrowserRouter, Route } from "react-router-dom";
 import styled from "@emotion/styled";
-// import { UsersContainer } from "./components/Users/UsersContainer";
-import { UsersContainerClass } from "./components/Users/UsersContainerClass";
+import { UsersContainer } from "./components/Users/UsersContainer";
 
 export const App = (props) => {
   return (
@@ -18,7 +17,7 @@ export const App = (props) => {
         <Content>
           <Route path="/dialogs" component={DialogsContainer} />
           <Route path="/profile" component={Profile} />
-          <Route path="/users" component={UsersContainerClass} />
+          <Route path="/users" component={UsersContainer} />
         </Content>
       </Wrapper>
     </BrowserRouter>
