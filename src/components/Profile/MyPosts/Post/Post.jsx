@@ -5,9 +5,10 @@ export const Post = (props) => {
   return (
     <Wrap>
       <Img src="https://pngimage.net/wp-content/uploads/2018/06/male-avatar-icon-png-4.png" />
-      {props.message}
+      <span>{props.message}</span>
+      
       <div>
-        <span>like</span> {props.likesCount}
+        <span>like {props.likesCount}</span> 
       </div>
     </Wrap>
   );

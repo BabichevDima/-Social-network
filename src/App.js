@@ -3,9 +3,11 @@ import "./App.css";
 import { Header } from "./components/Header/Header";
 import { Navbar } from "./components/Navbar/Navbar";
 import { Profile } from "./components/Profile/Profile";
-import { Dialogs } from "./components/Dialogs/Dialogs";
+import { DialogsContainer } from "./components/Dialogs/DialogsContainer";
 import { BrowserRouter, Route } from "react-router-dom";
 import styled from "@emotion/styled";
+// import { UsersContainer } from "./components/Users/UsersContainer";
+import { UsersContainerClass } from "./components/Users/UsersContainerClass";
 
 export const App = (props) => {
   return (
@@ -14,24 +16,9 @@ export const App = (props) => {
         <Header />
         <Navbar />
         <Content>
-          <Route
-            path="/dialogs"
-            render={() => (
-              <Dialogs
-                state={props.state.dialogsPage}
-                dispatch={props.dispatch}
-              />
-            )}
-          />
-          <Route
-            path="/profile"
-            render={() => (
-              <Profile
-                profilePage={props.state.profilePage}
-                dispatch={props.dispatch}
-              />
-            )}
-          />
+          <Route path="/dialogs" component={DialogsContainer} />
+          <Route path="/profile" component={Profile} />
+          <Route path="/users" component={UsersContainerClass} />
         </Content>
       </Wrapper>
     </BrowserRouter>

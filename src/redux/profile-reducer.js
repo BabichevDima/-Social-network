@@ -11,20 +11,17 @@ const initialState = {
   newPostText: "TMS",
 };
 
-export const profileReduser = (state = initialState, { type, payload }) => {
+export const profileReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case ADD_POST:
-      const newUser = {
+      const newPost = {
         id: 5,
         message: state.newPostText,
         likesCount: 0,
       };
-      state.posts.push(newUser);
-      state.newPostText = "";
-      return state;
+      return { ...state, posts: [...state.posts, newPost], newPostText: "" };
     case UPDATE_NEW_POST_TEXT:
-      state.newPostText = payload;
-      return state;
+      return { ...state, newPostText: payload };
     default:
       return state;
   }
