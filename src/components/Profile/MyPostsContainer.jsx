@@ -1,9 +1,9 @@
 import React from "react";
-import { addPostActionCreator } from "../../../redux/profile-reducer";
+import { addPostActionCreator } from "@redux/profile-reducer";
 import { connect } from "react-redux";
 import styled from "@emotion/styled";
 import { PostFieldContainer } from "./PostFieldContainer";
-import { Post } from "./Post/Post";
+import { Post } from "./Post";
 
 const MyPosts = (props) => {
   const addPost = () => {

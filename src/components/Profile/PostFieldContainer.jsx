@@ -1,5 +1,5 @@
 import React from "react";
-import { updateNewPostActionCreator } from "../../../redux/profile-reducer";
+import { updateNewPostActionCreator } from "@redux/profile-reducer";
 import { connect } from "react-redux";
 
 const PostField = (props) => {

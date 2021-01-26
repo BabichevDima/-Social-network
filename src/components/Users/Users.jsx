@@ -30,7 +30,7 @@ export const Users = (props) => {
       {props.users.map((u) => (
         <div key={u.id}>
           <div>
-            <Img src={u.photos.small != null ? u.photos.small : User} />
+            <Img src={u.photos.small != null ? u.photos.small : User} alt="Avatar"/>
           </div>
 
           <div>

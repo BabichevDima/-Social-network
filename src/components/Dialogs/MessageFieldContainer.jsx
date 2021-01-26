@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { updateNewMessageBodyCreator } from "../../../redux/dialogs-reducer";
+import { updateNewMessageBodyCreator } from "@redux/dialogs-reducer";
 
 
 const MessageField = (props) => {

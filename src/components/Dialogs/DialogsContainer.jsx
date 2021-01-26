@@ -1,8 +1,8 @@
 import React from "react";
-import DialogItem from "./DialogItem/DialogItem";
-import { MessageFieldContainer } from "./Message/MessageFieldContainer";
+import { DialogItem } from "./DialogItem";
+import { MessageFieldContainer } from "./MessageFieldContainer";
 import styled from "@emotion/styled";
-import { sendMessageCreator } from "../../redux/dialogs-reducer";
+import { sendMessageCreator } from "@redux/dialogs-reducer";
 import { connect } from "react-redux";
 
 const Dialog = (props) => {

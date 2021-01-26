@@ -4,16 +4,18 @@ import styled from "@emotion/styled";
 export const Header = () => {
   return (
     <Wrap>
-      <Img src="https://www.freelogodesign.org/Content/img/logo-ex-7.png" />
+      <Img src="https://w7.pngwing.com/pngs/90/358/png-transparent-social-media-computer-icons-vk-social-network-social-media-logo-social-media-internet.png" alt="Logo"/>
     </Wrap>
   );
 };
 
 const Wrap = styled.div`
   grid-area: h;
-  background-color: green;
+  background-color: #6e6e6e;
 `;
 
 const Img = styled.img`
-  width: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
 `;

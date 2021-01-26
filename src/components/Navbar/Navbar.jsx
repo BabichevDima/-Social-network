@@ -1,7 +1,6 @@
 import React from "react";
 import s from "./Navbar.module.css";
 import { NavLink } from "react-router-dom";
-import styled from "@emotion/styled";
 
 export const Navbar = () => {
   return (
@@ -24,13 +23,13 @@ export const Navbar = () => {
       </div>
 
       <div className={s.item}>
-        <a>News</a>
+        <span>News</span>
       </div>
       <div className={s.item}>
-        <a>Music</a>
+        <span>Music</span>
       </div>
       <div className={s.item}>
-        <a>Settings</a>
+        <span>Settings</span>
       </div>
     </nav>
   );

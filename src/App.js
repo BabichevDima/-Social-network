@@ -1,12 +1,12 @@
 import React from "react";
 import "./App.css";
-import { Header } from "./components/Header/Header";
-import { Navbar } from "./components/Navbar/Navbar";
-import { Profile } from "./components/Profile/Profile";
-import { DialogsContainer } from "./components/Dialogs/DialogsContainer";
+import { Header } from "./components/Header";
+import { Navbar } from "./components/Navbar";
+import { Profile } from "./components/Profile";
+import { DialogsContainer } from "./components/Dialogs";
 import { BrowserRouter, Route } from "react-router-dom";
 import styled from "@emotion/styled";
-import { UsersContainer } from "./components/Users/UsersContainer";
+import { UsersContainer } from "./components/Users";
 
 export const App = (props) => {
   return (
