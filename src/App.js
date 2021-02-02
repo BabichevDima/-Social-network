@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import { Header } from "./components/Header";
 import { Navbar } from "./components/Navbar";
-import { Profile } from "./components/Profile";
+import { ProfileContainer } from "./components/Profile";
 import { DialogsContainer } from "./components/Dialogs";
 import { BrowserRouter, Route } from "react-router-dom";
 import styled from "@emotion/styled";
@@ -16,7 +16,7 @@ export const App = (props) => {
         <Navbar />
         <Content>
           <Route path="/dialogs" component={DialogsContainer} />
-          <Route path="/profile" component={Profile} />
+          <Route path="/profile/:userId?" component={ProfileContainer} />
           <Route path="/users" component={UsersContainer} />
         </Content>
       </Wrapper>
