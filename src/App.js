@@ -1,26 +1,24 @@
 import React from "react";
 import "./App.css";
-import { Header } from "./components/Header";
+import { HeaderContainer } from "./components/Header";
 import { Navbar } from "./components/Navbar";
 import { ProfileContainer } from "./components/Profile";
 import { DialogsContainer } from "./components/Dialogs";
-import { BrowserRouter, Route } from "react-router-dom";
+import { Route } from "react-router-dom";
 import styled from "@emotion/styled";
 import { UsersContainer } from "./components/Users";
 
 export const App = (props) => {
   return (
-    <BrowserRouter>
-      <Wrapper>
-        <Header />
-        <Navbar />
-        <Content>
-          <Route path="/dialogs" component={DialogsContainer} />
-          <Route path="/profile/:userId?" component={ProfileContainer} />
-          <Route path="/users" component={UsersContainer} />
-        </Content>
-      </Wrapper>
-    </BrowserRouter>
+    <Wrapper>
+      <HeaderContainer />
+      <Navbar />
+      <Content>
+        <Route path="/dialogs" component={DialogsContainer} />
+        <Route path="/profile/:userId?" component={ProfileContainer} />
+        <Route path="/users" component={UsersContainer} />
+      </Content>
+    </Wrapper>
   );
 };
 
