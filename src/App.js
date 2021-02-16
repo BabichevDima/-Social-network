@@ -8,7 +8,7 @@ import { Route } from "react-router-dom";
 import styled from "@emotion/styled";
 import { UsersContainer } from "./components/Users";
 
-export const App = (props) => {
+export const App = () => {
   return (
     <Wrapper>
       <HeaderContainer />

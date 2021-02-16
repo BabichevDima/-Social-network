@@ -12,7 +12,7 @@ class HeaderAPI extends Component {
       })
       .then((response) => {
         if (response.data.resultCode === 0) {
-          let { id, email, login } = response.data.data;
+          const { id, email, login } = response.data.data;
           this.props.setAuthUserData(id, email, login);
         }
       });

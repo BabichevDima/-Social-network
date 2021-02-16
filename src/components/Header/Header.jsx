@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { NavLink } from "react-router-dom";
 
 export const Header = (props) => {
   return (
@@ -10,7 +9,13 @@ export const Header = (props) => {
         alt="Logo"
       />
       <Login>
-        {props.isAuth ? props.login : <NavLink to={"/login"}>Login</NavLink>}
+        {props.isAuth ? (
+          props.login
+        ) : (
+          <a target="_blank" href="https://social-network.samuraijs.com/">
+            Сheck in
+          </a>
+        )}
       </Login>
     </Wrap>
   );

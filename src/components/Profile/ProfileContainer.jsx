@@ -23,8 +23,8 @@ export class ProfileContainerConnect extends Component {
   }
 }
 
-const WithUrlDataContainerComponent = withRouter(ProfileContainerConnect);
+// const WithUrlDataContainerComponent = withRouter(ProfileContainerConnect);
 
 export const ProfileContainer = connect((state) => ({ profile: state.profilePage.profile }), {
   setUsersProfile
-})(WithUrlDataContainerComponent);
+})(withRouter(ProfileContainerConnect));
