@@ -54,8 +54,7 @@ export const Users = (props) => {
                   });
                 }}
               >
-                {" "}
-                Unfollow{" "}
+                Unfollow
               </button>
             ) : (
               <button
