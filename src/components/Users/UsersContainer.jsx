@@ -3,15 +3,11 @@ import { connect } from "react-redux";
 import {
   follow,
   unfollow,
-  setUsers,
-  setTotalUsersCount,
-  toggleIsFetching,
   toggleFollowingProgress,
-  getUsersThunkCreator,
+  getUsers,
 } from "@redux/users-reducer";
 import { Users } from "./Users";
 import { Preloader } from "./Preloader";
-import { usersAPI } from "@api";
 
 class UsersAPI extends React.Component {
   constructor(props) {
@@ -37,7 +33,6 @@ class UsersAPI extends React.Component {
           users={this.props.users}
           unfollow={this.props.unfollow}
           follow={this.props.follow}
-          toggleFollowingProgress={this.props.toggleFollowingProgress}
           followingInProgress={this.props.followingInProgress}
         />
       </>
@@ -57,10 +52,7 @@ export const UsersContainer = connect(
   {
     follow,
     unfollow,
-    setUsers,
-    setTotalUsersCount,
-    toggleIsFetching,
     toggleFollowingProgress,
-    getUsers: getUsersThunkCreator,
+    getUsers,
   }
 )(UsersAPI);

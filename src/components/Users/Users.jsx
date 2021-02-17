@@ -2,7 +2,7 @@ import React from "react";
 import styled from "@emotion/styled";
 import User from "../../assets/images/User.png";
 import { NavLink } from "react-router-dom";
-import { usersAPI } from "@api";
+// import { follow, unfollow } from "@redux/users-reducer";
 
 export const Users = (props) => {
   const pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
@@ -45,13 +45,7 @@ export const Users = (props) => {
               <button
                 disabled={props.followingInProgress.some((id) => id === u.id)}
                 onClick={() => {
-                  props.toggleFollowingProgress(true, u.id);
-                  usersAPI.deleteUsers(u.id).then((data) => {
-                    if (data.resultCode == 0) {
-                      props.unfollow(u.id);
-                    }
-                    props.toggleFollowingProgress(false, u.id);
-                  });
+                  props.unfollow(u.id);
                 }}
               >
                 Unfollow
@@ -60,13 +54,7 @@ export const Users = (props) => {
               <button
                 disabled={props.followingInProgress.some((id) => id === u.id)}
                 onClick={() => {
-                  props.toggleFollowingProgress(true, u.id);
-                  usersAPI.postUsers(u.id).then((data) => {
-                    if (data.resultCode == 0) {
-                      props.follow(u.id);
-                    }
-                    props.toggleFollowingProgress(false, u.id);
-                  });
+                  props.follow(u.id);
                 }}
               >
                 Follow
