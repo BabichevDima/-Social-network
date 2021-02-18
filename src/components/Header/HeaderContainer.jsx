@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { Header } from "./Header";
 import { connect } from "react-redux";
-import { setAuthUserData, authMe } from "../../redux/auth-reducer";
+import { getAuthUserData } from "@redux/auth-reducer";
 
 class HeaderAPI extends Component {
   componentDidMount() {
-    this.props.authMe();
+    this.props.getAuthUserData();
   }
 
   render() {
@@ -19,7 +19,6 @@ export const HeaderContainer = connect(
     login: state.auth.login,
   }),
   {
-    setAuthUserData,
-    authMe,
+    getAuthUserData,
   }
 )(HeaderAPI);

@@ -7,6 +7,7 @@ import { DialogsContainer } from "./components/Dialogs";
 import { Route } from "react-router-dom";
 import styled from "@emotion/styled";
 import { UsersContainer } from "./components/Users";
+import { Login } from "./components/Login"
 
 export const App = () => {
   return (
@@ -17,6 +18,7 @@ export const App = () => {
         <Route path="/dialogs" component={DialogsContainer} />
         <Route path="/profile/:userId?" component={ProfileContainer} />
         <Route path="/users" component={UsersContainer} />
+        <Route path="/login" component={Login} />
       </Content>
     </Wrapper>
   );
