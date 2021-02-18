@@ -1,3 +1,5 @@
+import { usersAPI } from "@api";
+
 const SET_USER_DATA = "SET_USER_DATA";
 
 const initialState = {

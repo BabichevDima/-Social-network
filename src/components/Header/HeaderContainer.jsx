@@ -6,6 +6,8 @@ import { setAuthUserData } from "../../redux/auth-reducer";
 
 class HeaderAPI extends Component {
   componentDidMount() {
+
+    
     axios
       .get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {
         withCredentials: true,
@@ -16,6 +18,8 @@ class HeaderAPI extends Component {
           this.props.setAuthUserData(id, email, login);
         }
       });
+
+
   }
   render() {
     return <Header {...this.props} />;

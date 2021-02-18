@@ -2,7 +2,6 @@ import React from "react";
 import styled from "@emotion/styled";
 import User from "../../assets/images/User.png";
 import { NavLink } from "react-router-dom";
-// import { follow, unfollow } from "@redux/users-reducer";
 
 export const Users = (props) => {
   const pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
