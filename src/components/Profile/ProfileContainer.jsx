@@ -8,18 +8,24 @@ export class ProfileContainerConnect extends Component {
   componentDidMount() {
     let userId = this.props.match.params.userId;
     if (!userId) {
-      userId = 2;
+      // userId = 2;
+      userId = this.props.myId;
     }
     this.props.getUser(userId);
   }
 
   render() {
-    return <Profile {...this.props} profile={this.props.profile} />;
+    return (
+      <>
+        <Profile {...this.props} profile={this.props.profile} />
+        <div>{this.props.myId}</div>
+      </>
+    );
   }
 }
 
 export const ProfileContainer = connect(
-  (state) => ({ profile: state.profilePage.profile }),
+  (state) => ({ profile: state.profilePage.profile, myId: state.auth.id }),
   {
     setUsersProfile,
     getUser,

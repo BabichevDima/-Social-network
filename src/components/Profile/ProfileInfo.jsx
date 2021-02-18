@@ -3,16 +3,22 @@ import styled from "@emotion/styled";
 import { Preloader } from "../Users/Preloader";
 
 export const ProfileInfo = (props) => {
-if (!props.profile){
-  return <Preloader />
-}
+  if (!props.profile) {
+    return <Preloader />;
+  }
   return (
     <div>
       <div>
         <img src="https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&h=350" />
       </div>
       <DescriptionBlock>{props.profile.aboutMe}</DescriptionBlock>
-      <img src={props.profile.photos.large}/>
+      <img
+        src={
+          props.profile.photos.large != null
+            ? props.profile.photos.large
+            : "https://pngimage.net/wp-content/uploads/2018/06/male-avatar-icon-png-4.png"
+        }
+      />
     </div>
   );
 };
