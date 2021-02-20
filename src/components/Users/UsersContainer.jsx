@@ -9,9 +9,9 @@ import {
 import { Users } from "./Users";
 import { Preloader } from "./Preloader";
 import { withAuthRedirect } from "@hoc";
+import { compose } from "redux";
 
 class UsersAPI extends React.Component {
-
   componentDidMount() {
     this.props.getUsers(this.props.currentPage, this.props.pageSize);
   }
@@ -38,19 +38,39 @@ class UsersAPI extends React.Component {
   }
 }
 
-export const UsersContainer = connect(
-  (state) => ({
-    users: state.usersPage.users,
-    pageSize: state.usersPage.pageSize,
-    totalUsersCount: state.usersPage.totalUsersCount,
-    currentPage: state.usersPage.currentPage,
-    isFetching: state.usersPage.isFetching,
-    followingInProgress: state.usersPage.followingInProgress,
-  }),
-  {
-    follow,
-    unfollow,
-    toggleFollowingProgress,
-    getUsers,
-  }
-)(withAuthRedirect(UsersAPI));
+export const UsersContainer = compose(
+  connect(
+    (state) => ({
+      users: state.usersPage.users,
+      pageSize: state.usersPage.pageSize,
+      totalUsersCount: state.usersPage.totalUsersCount,
+      currentPage: state.usersPage.currentPage,
+      isFetching: state.usersPage.isFetching,
+      followingInProgress: state.usersPage.followingInProgress,
+    }),
+    {
+      follow,
+      unfollow,
+      toggleFollowingProgress,
+      getUsers,
+    }
+  ),
+  withAuthRedirect
+)(UsersAPI);
+
+// export const UsersContainer = connect(
+//   (state) => ({
+//     users: state.usersPage.users,
+//     pageSize: state.usersPage.pageSize,
+//     totalUsersCount: state.usersPage.totalUsersCount,
+//     currentPage: state.usersPage.currentPage,
+//     isFetching: state.usersPage.isFetching,
+//     followingInProgress: state.usersPage.followingInProgress,
+//   }),
+//   {
+//     follow,
+//     unfollow,
+//     toggleFollowingProgress,
+//     getUsers,
+//   }
+// )(withAuthRedirect(UsersAPI));

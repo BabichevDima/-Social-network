@@ -34,13 +34,24 @@ const Dialog = (props) => {
   );
 };
 
-export const DialogsContainer = connect(
-  (state) => ({
-    messages: state.dialogsPage.messages,
-    dialogs: state.dialogsPage.dialogs,
-  }),
-  { sendMessageCreator }
-)(withAuthRedirect(Dialog));
+export const DialogsContainer = compose(
+  connect(
+    (state) => ({
+      messages: state.dialogsPage.messages,
+      dialogs: state.dialogsPage.dialogs,
+    }),
+    { sendMessageCreator }
+  ),
+  withAuthRedirect
+)(Dialog);
+
+// export const DialogsContainer = connect(
+//   (state) => ({
+//     messages: state.dialogsPage.messages,
+//     dialogs: state.dialogsPage.dialogs,
+//   }),
+//   { sendMessageCreator }
+// )(withAuthRedirect(Dialog));
 
 const WrapDialogs = styled.div`
   display: grid;
