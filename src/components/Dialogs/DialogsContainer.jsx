@@ -4,7 +4,8 @@ import { MessageFieldContainer } from "./MessageFieldContainer";
 import styled from "@emotion/styled";
 import { sendMessageCreator } from "@redux/dialogs-reducer";
 import { connect } from "react-redux";
-import { withAuthRedirect } from "../hoc/withAuthRedirect";
+import { withAuthRedirect } from "@hoc";
+import { compose } from "redux";
 
 const Dialog = (props) => {
   const onSendMessageClick = () => {
@@ -33,16 +34,13 @@ const Dialog = (props) => {
   );
 };
 
-const AuthRedirectComponent = withAuthRedirect(Dialog);
-
 export const DialogsContainer = connect(
   (state) => ({
     messages: state.dialogsPage.messages,
     dialogs: state.dialogsPage.dialogs,
-    isAuth: state.auth.isAuth,
   }),
   { sendMessageCreator }
-)(AuthRedirectComponent);
+)(withAuthRedirect(Dialog));
 
 const WrapDialogs = styled.div`
   display: grid;

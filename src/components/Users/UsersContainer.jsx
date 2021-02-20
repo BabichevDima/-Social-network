@@ -8,11 +8,9 @@ import {
 } from "@redux/users-reducer";
 import { Users } from "./Users";
 import { Preloader } from "./Preloader";
+import { withAuthRedirect } from "@hoc";
 
 class UsersAPI extends React.Component {
-  constructor(props) {
-    super(props);
-  }
 
   componentDidMount() {
     this.props.getUsers(this.props.currentPage, this.props.pageSize);
@@ -55,4 +53,4 @@ export const UsersContainer = connect(
     toggleFollowingProgress,
     getUsers,
   }
-)(UsersAPI);
+)(withAuthRedirect(UsersAPI));
