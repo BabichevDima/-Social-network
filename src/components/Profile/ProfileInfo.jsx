@@ -12,7 +12,10 @@ export const ProfileInfo = (props) => {
       {/* <div>
         <img src="https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&h=350" />
       </div> */}
-      <DescriptionBlock>{props.profile.aboutMe}</DescriptionBlock>
+      <div>
+        <span>description: </span>
+        <DescriptionBlock>{props.profile.aboutMe}</DescriptionBlock>
+      </div>
       <img
         src={
           props.profile.photos.large != null
@@ -20,7 +23,7 @@ export const ProfileInfo = (props) => {
             : "https://pngimage.net/wp-content/uploads/2018/06/male-avatar-icon-png-4.png"
         }
       />
-      <ProfileStatus status="Hello world!!!"/>
+      <ProfileStatus status={props.status} updateStatus={props.updateStatus} />
     </div>
   );
 };
