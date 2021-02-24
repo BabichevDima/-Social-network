@@ -24,6 +24,13 @@ export class ProfileStatus extends Component {
     this.setState({ status: e.currentTarget.value });
   };
 
+  componentDidUpdate = (prevProps, prevState) => {
+    debugger
+    if (prevProps.status !== this.props.status) {
+      this.setState({ status: this.props.status });
+    }
+  };
+
   render() {
     return (
       <div>
@@ -44,7 +51,7 @@ export class ProfileStatus extends Component {
           </div>
         )}
       </div>
-    ); 
+    );
   }
 }
 
