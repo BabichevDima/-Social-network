@@ -1,15 +1,15 @@
 import React from "react";
 import { DialogItem } from "./DialogItem";
-import { MessageFieldContainer } from "./MessageFieldContainer";
 import styled from "@emotion/styled";
 import { sendMessageCreator } from "@redux/dialogs-reducer";
 import { connect } from "react-redux";
 import { withAuthRedirect } from "@hoc";
 import { compose } from "redux";
+import { Field, reduxForm } from "redux-form";
 
 const Dialog = (props) => {
-  const onSendMessageClick = () => {
-    props.sendMessageCreator();
+  const addNewMessage = (values) => {
+    props.sendMessageCreator(values.newMessageBody);
   };
 
   return (
@@ -26,13 +26,33 @@ const Dialog = (props) => {
         ))}
 
         <div>
-          <MessageFieldContainer />
-          <Button onClick={onSendMessageClick}>Add massage</Button>
+          <AddMessageFormReduxForm onSubmit={addNewMessage} />
         </div>
       </BossMessages>
     </WrapDialogs>
   );
 };
+
+const AddMessageForm = (props) => {
+  return (
+    <form onSubmit={props.handleSubmit}>
+      <div>
+        <Field
+          component={"textarea"}
+          placeholder={"Enter your message"}
+          name={"newMessageBody"}
+        />
+      </div>
+      <div>
+        <Button>Add massage</Button>
+      </div>
+    </form>
+  );
+};
+
+const AddMessageFormReduxForm = reduxForm({
+  form: "dialogAddMessageForm",
+})(AddMessageForm);
 
 export const DialogsContainer = compose(
   connect(
@@ -44,14 +64,6 @@ export const DialogsContainer = compose(
   ),
   withAuthRedirect
 )(Dialog);
-
-// export const DialogsContainer = connect(
-//   (state) => ({
-//     messages: state.dialogsPage.messages,
-//     dialogs: state.dialogsPage.dialogs,
-//   }),
-//   { sendMessageCreator }
-// )(withAuthRedirect(Dialog));
 
 const WrapDialogs = styled.div`
   display: grid;

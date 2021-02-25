@@ -26,7 +26,6 @@ const LoginReduxForm = reduxForm({
 })(LoginForm);
 
 export const Login = (props) => {
-
   const onSubmit = (formData) => {
     console.log(formData);
   };
