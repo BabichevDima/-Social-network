@@ -44,7 +44,7 @@ const AddMessageForm = (props) => {
         />
       </div>
       <div>
-        <Button>Add massage</Button>
+        <button>Add massage</button>
       </div>
     </form>
   );
@@ -80,9 +80,4 @@ const DialogsItems = styled.div`
 
 const BossMessages = styled.div`
   padding: 10px;
-`;
-
-const Button = styled.button`
-  width: 100px;
-  height: 25px;
 `;
