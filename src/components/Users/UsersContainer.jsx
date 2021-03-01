@@ -7,7 +7,7 @@ import {
   getUsers,
 } from "@redux/users-reducer";
 import { Users } from "./Users";
-import { Preloader } from "./Preloader";
+import { Preloader } from "../common/Preloader";
 import { withAuthRedirect } from "@hoc";
 import { compose } from "redux";
 

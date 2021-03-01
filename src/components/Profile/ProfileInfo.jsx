@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { Preloader } from "../Users/Preloader";
+import { Preloader } from "../common/Preloader";
 import { ProfileStatus } from "./ProfileStatus";
 
 export const ProfileInfo = (props) => {

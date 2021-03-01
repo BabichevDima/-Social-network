@@ -6,6 +6,10 @@ import { connect } from "react-redux";
 import { withAuthRedirect } from "@hoc";
 import { compose } from "redux";
 import { Field, reduxForm } from "redux-form";
+import { required, maxLengthCreator } from "../../utils/validators";
+import { Textarea } from "../common/FormsControl";
+
+const maxLength300 = maxLengthCreator(300);
 
 const Dialog = (props) => {
   const addNewMessage = (values) => {
@@ -38,9 +42,10 @@ const AddMessageForm = (props) => {
     <form onSubmit={props.handleSubmit}>
       <div>
         <Field
-          component={"textarea"}
+          component={Textarea}
           placeholder={"Enter your message"}
           name={"newMessageBody"}
+          validate={[required, maxLength300]}
         />
       </div>
       <div>
