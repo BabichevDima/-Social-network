@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
+import Attention from "../../assets/images/Attention.png";
 
 export const Textarea = ({ input, meta, ...props }) => {
   const hasError = meta.error && meta.touched;
@@ -7,12 +8,17 @@ export const Textarea = ({ input, meta, ...props }) => {
     <div>
       <div>
         {hasError ? (
-          <FieldError {...input} {...props} />
+          <FieldTextareaError {...input} {...props} />
         ) : (
-          <Field {...input} {...props} />
+          <FieldTextarea {...input} {...props} />
         )}
       </div>
-      {hasError && <Span>"{meta.error}"</Span>}
+      {hasError && (
+        <div>
+          <Span>"{meta.error}"</Span>
+          <Img src={Attention} />
+        </div>
+      )}
     </div>
   );
 };
@@ -28,14 +34,19 @@ export const Input = ({ input, meta, ...props }) => {
           <FieldInput {...input} {...props} />
         )}
       </div>
-      {hasError && <Span>"{meta.error}"</Span>}
+      {hasError && (
+        <div>
+          <Span>"{meta.error}"</Span>
+          <Img src={Attention} />
+        </div>
+      )}
     </div>
   );
 };
 
-const Field = styled.textarea``;
+const FieldTextarea = styled.textarea``;
 
-const FieldError = styled.textarea`
+const FieldTextareaError = styled.textarea`
   border: solid 2px red;
 `;
 
@@ -47,4 +58,9 @@ const FieldInputError = styled.input`
 
 const Span = styled.span`
   color: red;
+`;
+
+const Img = styled.img`
+  width: 40px;
+  height: 40px;
 `;
