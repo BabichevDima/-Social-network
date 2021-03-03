@@ -57,20 +57,3 @@ export const UsersContainer = compose(
   ),
   withAuthRedirect
 )(UsersAPI);
-
-// export const UsersContainer = connect(
-//   (state) => ({
-//     users: state.usersPage.users,
-//     pageSize: state.usersPage.pageSize,
-//     totalUsersCount: state.usersPage.totalUsersCount,
-//     currentPage: state.usersPage.currentPage,
-//     isFetching: state.usersPage.isFetching,
-//     followingInProgress: state.usersPage.followingInProgress,
-//   }),
-//   {
-//     follow,
-//     unfollow,
-//     toggleFollowingProgress,
-//     getUsers,
-//   }
-// )(withAuthRedirect(UsersAPI));

@@ -1,1 +1,1 @@
-export { Login } from "./Login";
+export { LoginConnect } from "./Login";

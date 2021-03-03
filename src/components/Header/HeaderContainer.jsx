@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Header } from "./Header";
 import { connect } from "react-redux";
-import { getAuthUserData } from "@redux/auth-reducer";
+import { getAuthUserData, LoginOut } from "@redux/auth-reducer";
 
 class HeaderAPI extends Component {
   componentDidMount() {
@@ -20,5 +20,6 @@ export const HeaderContainer = connect(
   }),
   {
     getAuthUserData,
+    LoginOut,
   }
 )(HeaderAPI);
