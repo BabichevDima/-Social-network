@@ -5,6 +5,7 @@ import { required, maxLengthCreator } from "../../utils/validators";
 import { Input } from "../common/FormsControl";
 import { Login } from "@redux/auth-reducer";
 import { Redirect } from "react-router-dom";
+import styled from "@emotion/styled";
 
 const maxLength30 = maxLengthCreator(30);
 
@@ -32,6 +33,9 @@ const LoginForm = (props) => {
         <Field type={"checkbox"} name={"rememberMe"} component={Input} />
         remember me
       </div>
+
+      {props.error && <FieldError>{props.error}</FieldError>}
+
       <div>
         <button>Login</button>
       </div>
@@ -65,3 +69,8 @@ export const LoginConnect = connect(
   }),
   { Login }
 )(Log);
+
+const FieldError = styled.div`
+  color: red;
+  padding-left: 3px;
+`;

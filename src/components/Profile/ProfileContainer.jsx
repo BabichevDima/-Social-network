@@ -13,8 +13,7 @@ class ProfileContainerConnect extends Component {
   componentDidMount() {
     let userId = this.props.match.params.userId;
     if (!userId) {
-      userId = 14779;
-      // userId = this.props.myId;
+      userId = this.props.authorizedUserId;
     }
     this.props.getUserProfile(userId);
     this.props.getStatus(userId);
@@ -37,7 +36,8 @@ export const ProfileContainer = compose(
     (state) => ({
       profile: state.profilePage.profile,
       status: state.profilePage.status,
-      myId: state.auth.id,
+      authorizedUserId: state.auth.id,
+      isAuth: state.auth.isAuth,
     }),
     {
       getUserProfile,
