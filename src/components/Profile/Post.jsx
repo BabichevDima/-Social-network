@@ -4,11 +4,14 @@ import styled from "@emotion/styled";
 export const Post = (props) => {
   return (
     <Wrap>
-      <Img src="https://pngimage.net/wp-content/uploads/2018/06/male-avatar-icon-png-4.png" alt="Avatar"/>
+      <Img
+        src="https://pngimage.net/wp-content/uploads/2018/06/male-avatar-icon-png-4.png"
+        alt="Avatar"
+      />
       <span>{props.message}</span>
-      
+
       <div>
-        <span>like {props.likesCount}</span> 
+        <span>like {props.likesCount}</span>
       </div>
     </Wrap>
   );
