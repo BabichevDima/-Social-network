@@ -1,18 +1,18 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { NavLink } from "react-router-dom";
-import Network from "../../assets/images/Network.png";
+import Network from "@assets/Network.png";
 
-export const Header = (props) => {
+export const Header = ({ isAuth, login, loginOut }) => {
   return (
     <Wrap>
       <Img src={Network} alt="Logo" />
       <Login>
-        {props.isAuth ? (
+        {isAuth ? (
           <div>
-            <div>{props.login}</div>
+            <div>{login}</div>
             <div>
-              <button onClick={props.LoginOut}>Log out</button>
+              <button onClick={loginOut}>Log out</button>
             </div>
           </div>
         ) : (

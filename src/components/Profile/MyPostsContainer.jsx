@@ -4,12 +4,13 @@ import { connect } from "react-redux";
 import styled from "@emotion/styled";
 import { Post } from "./Post";
 import { Field, reduxForm } from "redux-form";
-import { required, maxLengthCreator } from "../../utils/validators";
-import { Textarea } from "../common/FormsControl";
+import { required, maxLengthCreator } from "@utils/validators";
+import { Textarea } from "@common/FormsControl";
 
 const maxLength10 = maxLengthCreator(10);
 
 const MyPosts = (props) => {
+  console.log("render MyPosts");
   const addPost = (values) => {
     props.addPostActionCreator(values.newPost);
   };

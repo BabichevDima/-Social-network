@@ -1,84 +1,39 @@
 import React from "react";
-import styled from "@emotion/styled";
-import User from "../../assets/images/User.png";
-import { NavLink } from "react-router-dom";
+import { User } from "./User";
+import { PaginationBasic } from "@common/Pagination";
 
-export const Users = (props) => {
-  const pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
-
-  const pages = [];
-  for (let i = 1; i <= pagesCount; i++) {
-    pages.push(i);
-  }
-
+export const Users = ({
+  currentPage,
+  onPageChanged,
+  totalUsersCount,
+  pageSize,
+  users,
+  followingInProgress,
+  follow,
+  unfollow,
+  ...props
+}) => {
   return (
     <div>
+      <PaginationBasic
+        onPageChanged={onPageChanged}
+        totalUsersCount={totalUsersCount}
+        pageSize={pageSize}
+        currentPage={currentPage}
+      />
       <div>
-        {pages.map((p) => {
+        {users.map((u) => {
           return (
-            <SelectedPage
-              key={p.id}
-              onClick={(e) => {
-                props.onPageChanged(p);
-              }}
-            >
-              {p}
-            </SelectedPage>
+            <User
+              user={u}
+              key={u.id}
+              followingInProgress={followingInProgress}
+              follow={follow}
+              unfollow={unfollow}
+            />
           );
         })}
       </div>
-
-      {props.users.map((u) => (
-        <div key={u.id}>
-          <div>
-            <NavLink to={"/profile/" + u.id}>
-              <Img
-                src={u.photos.small != null ? u.photos.small : User}
-                alt="Avatar"
-              />
-            </NavLink>
-          </div>
-
-          <div>
-            {u.followed ? (
-              <button
-                disabled={props.followingInProgress.some((id) => id === u.id)}
-                onClick={() => {
-                  props.unfollow(u.id);
-                }}
-              >
-                Unfollow
-              </button>
-            ) : (
-              <button
-                disabled={props.followingInProgress.some((id) => id === u.id)}
-                onClick={() => {
-                  props.follow(u.id);
-                }}
-              >
-                Follow
-              </button>
-            )}
-          </div>
-          <div>{u.name}</div>
-          <div>{u.status}</div>
-          <div>{"u.location.country"}</div>
-          <div>{"u.location.city"}</div>
-        </div>
-      ))}
     </div>
   );
 };
-
-const Img = styled.img`
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-`;
-
-const SelectedPage = styled.span`
-  padding-left: 5px;
-  &:hover {
-    cursor: pointer;
-  }
-`;

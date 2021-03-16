@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
-import Attention from "../../assets/images/Attention.png";
+import Attention from "@assets/Attention.png";
 
 export const Textarea = ({ input, meta, ...props }) => {
   const hasError = meta.error && meta.touched;

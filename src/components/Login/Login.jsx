@@ -1,17 +1,17 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Field, reduxForm } from "redux-form";
-import { required, maxLengthCreator } from "../../utils/validators";
-import { Input } from "../common/FormsControl";
+import { required, maxLengthCreator } from "@utils/validators";
+import { Input } from "@common/FormsControl";
 import { Login } from "@redux/auth-reducer";
 import { Redirect } from "react-router-dom";
 import styled from "@emotion/styled";
 
 const maxLength30 = maxLengthCreator(30);
 
-const LoginForm = (props) => {
+const LoginForm = ({ handleSubmit, error }) => {
   return (
-    <form onSubmit={props.handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <div>
         <Field
           placeholder={"Email"}
@@ -34,7 +34,7 @@ const LoginForm = (props) => {
         remember me
       </div>
 
-      {props.error && <FieldError>{props.error}</FieldError>}
+      {error && <FieldError>{error}</FieldError>}
 
       <div>
         <button>Login</button>

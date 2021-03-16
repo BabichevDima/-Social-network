@@ -6,26 +6,26 @@ import { connect } from "react-redux";
 import { withAuthRedirect } from "@hoc";
 import { compose } from "redux";
 import { Field, reduxForm } from "redux-form";
-import { required, maxLengthCreator } from "../../utils/validators";
-import { Textarea } from "../common/FormsControl";
+import { required, maxLengthCreator } from "@utils/validators";
+import { Textarea } from "@common/FormsControl";
 
 const maxLength300 = maxLengthCreator(300);
 
-const Dialog = (props) => {
+const Dialog = ({ sendMessageCreator, dialogs, messages }) => {
   const addNewMessage = (values) => {
-    props.sendMessageCreator(values.newMessageBody);
+    sendMessageCreator(values.newMessageBody);
   };
 
   return (
     <WrapDialogs>
       <DialogsItems>
-        {props.dialogs.map((d) => (
+        {dialogs.map((d) => (
           <DialogItem name={d.name} key={d.id} id={d.id} />
         ))}
       </DialogsItems>
 
       <BossMessages>
-        {props.messages.map((m) => (
+        {messages.map((m) => (
           <div key={m.id}>{m.message}</div>
         ))}
 
@@ -37,9 +37,9 @@ const Dialog = (props) => {
   );
 };
 
-const AddMessageForm = (props) => {
+const AddMessageForm = ({ handleSubmit }) => {
   return (
-    <form onSubmit={props.handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <div>
         <Field
           component={Textarea}

@@ -1,7 +1,7 @@
 import { authAPI } from "@api";
 import { stopSubmit } from "redux-form";
 
-const SET_USER_DATA = "SET_USER_DATA";
+const SET_USER_DATA = "network/auth/SET-USER-DATA";
 
 const initialState = {
   id: null,
@@ -28,37 +28,32 @@ export const setAuthUserData = (id, email, login, isAuth) => ({
   payload: { id, email, login, isAuth },
 });
 
-export const getAuthUserData = () => {
-  return (dispatch) => {
-    return authAPI.me().then((data) => {
-      if (data.resultCode === 0) {
-        const { id, email, login } = data.data;
-        dispatch(setAuthUserData(id, email, login, true));
-      }
-    });
-  };
+export const getAuthUserData = () => async (dispatch) => {
+  const data = await authAPI.me();
+
+  if (data.resultCode === 0) {
+    const { id, email, login } = data.data;
+    dispatch(setAuthUserData(id, email, login, true));
+  }
 };
 
-export const Login = (email, password, rememberMe) => (dispatch) => {
-  authAPI.login(email, password, rememberMe).then((response) => {
-    if (response.data.resultCode === 0) {
-      dispatch(getAuthUserData());
-    } else {
-      const message =
-        response.data.messages.length > 0
-          ? response.data.messages[0]
-          : "Some error";
-      dispatch(stopSubmit("login", { _error: message }));
-    }
-  });
+export const Login = (email, password, rememberMe) => async (dispatch) => {
+  const response = await authAPI.login(email, password, rememberMe);
+
+  if (response.data.resultCode === 0) {
+    dispatch(getAuthUserData());
+  } else {
+    const message =
+      response.data.messages.length > 0
+        ? response.data.messages[0]
+        : "Some error";
+    dispatch(stopSubmit("login", { _error: message }));
+  }
 };
 
-export const LoginOut = () => {
-  return (dispatch) => {
-    authAPI.logOut().then((data) => {
-      if (data.resultCode === 0) {
-        dispatch(setAuthUserData(null, null, null, false));
-      }
-    });
-  };
+export const loginOut = () => async (dispatch) => {
+  const data = await authAPI.logOut();
+  if (data.resultCode === 0) {
+    dispatch(setAuthUserData(null, null, null, false));
+  }
 };
