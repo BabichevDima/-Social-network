@@ -14,6 +14,7 @@ import { initializeApp } from "@redux/app-reducer";
 import { connect } from "react-redux";
 import { compose } from "redux";
 import { Preloader } from "./components/common/Preloader";
+import { withReactSuspense } from "./components/hoc/withReactSuspense";
 
 const ProfileContainer = React.lazy(() =>
   import("./components/Profile/ProfileContainer")
@@ -39,30 +40,11 @@ class App extends Component {
         <HeaderContainer />
         <Navbar />
         <Content>
-          {/* <Route path="/dialogs" component={DialogsContainer} /> */}
-          <Route
-            path="/dialogs"
-            render={() => {
-              return (
-                <Suspense fallback={<div>Loading...</div>}>
-                  <DialogsContainer />
-                </Suspense>
-              );
-            }}
-          />
-
-          {/* <Route path="/profile/:userId?" component={ProfileContainer} /> */}
+          <Route path="/dialogs" render={withReactSuspense(DialogsContainer)} />
           <Route
             path="/profile/:userId?"
-            render={() => {
-              return (
-                <Suspense fallback={<div>Loading...</div>}>
-                  <ProfileContainer />
-                </Suspense>
-              );
-            }}
+            render={withReactSuspense(ProfileContainer)}
           />
-          {/* <Route path="/users" component={UsersContainer} /> */}
           <Route
             path="/users"
             render={() => {
