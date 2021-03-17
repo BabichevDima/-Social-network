@@ -34,7 +34,7 @@ class ProfileContainerConnect extends Component {
   }
 }
 
-export const ProfileContainer = compose(
+const ProfileContainer = compose(
   connect(
     (state) => ({
       profile: state.profilePage.profile,
@@ -50,3 +50,5 @@ export const ProfileContainer = compose(
   ),
   withRouter
 )(ProfileContainerConnect);
+
+export default ProfileContainer

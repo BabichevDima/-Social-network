@@ -10,7 +10,6 @@ import { Textarea } from "@common/FormsControl";
 const maxLength10 = maxLengthCreator(10);
 
 const MyPosts = (props) => {
-  console.log("render MyPosts");
   const addPost = (values) => {
     props.addPostActionCreator(values.newPost);
   };

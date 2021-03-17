@@ -48,7 +48,7 @@ class UsersAPI extends React.Component {
   }
 }
 
-export const UsersContainer = compose(
+const UsersContainer = compose(
   connect(
     (state) => ({
       users: getUsers(state),
@@ -66,3 +66,5 @@ export const UsersContainer = compose(
     }
   )
 )(UsersAPI);
+
+export default UsersContainer

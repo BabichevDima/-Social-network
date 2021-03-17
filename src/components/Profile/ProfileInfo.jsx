@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import { Preloader } from "@common/Preloader";
 import { ProfileStatus } from "./ProfileStatus";
 
-export const ProfileInfo = ({ profile, status, updateStatus }) => {
+export const ProfileInfo = React.memo(({ profile, status, updateStatus }) => {
   if (!profile) {
     return <Preloader />;
   }
@@ -23,7 +23,7 @@ export const ProfileInfo = ({ profile, status, updateStatus }) => {
       <ProfileStatus status={status} updateStatus={updateStatus} />
     </div>
   );
-};
+});
 
 const DescriptionBlock = styled.div`
   padding: 10px;

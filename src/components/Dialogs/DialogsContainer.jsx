@@ -59,7 +59,7 @@ const AddMessageFormReduxForm = reduxForm({
   form: "dialogAddMessageForm",
 })(AddMessageForm);
 
-export const DialogsContainer = compose(
+const DialogsContainer = compose(
   connect(
     (state) => ({
       messages: state.dialogsPage.messages,
@@ -86,3 +86,5 @@ const DialogsItems = styled.div`
 const BossMessages = styled.div`
   padding: 10px;
 `;
+
+export default DialogsContainer;

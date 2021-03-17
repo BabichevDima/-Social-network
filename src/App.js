@@ -1,17 +1,29 @@
-import React, { Component } from "react";
+import React, { Component, Suspense } from "react";
 import "./App.css";
 import { HeaderContainer } from "./components/Header";
 import { Navbar } from "./components/Navbar";
-import { ProfileContainer } from "./components/Profile";
-import { DialogsContainer } from "./components/Dialogs";
+
+// import { ProfileContainer } from "./components/Profile";
+// import { DialogsContainer } from "./components/Dialogs";
+// import { UsersContainer } from "./components/Users";
+
 import { Route, withRouter } from "react-router-dom";
 import styled from "@emotion/styled";
-import { UsersContainer } from "./components/Users";
 import { LoginConnect } from "./components/Login";
 import { initializeApp } from "@redux/app-reducer";
 import { connect } from "react-redux";
 import { compose } from "redux";
 import { Preloader } from "./components/common/Preloader";
+
+const ProfileContainer = React.lazy(() =>
+  import("./components/Profile/ProfileContainer")
+);
+const DialogsContainer = React.lazy(() =>
+  import("./components/Dialogs/DialogsContainer")
+);
+const UsersContainer = React.lazy(() =>
+  import("./components/Users/UsersContainer")
+);
 
 class App extends Component {
   componentDidMount() {
@@ -27,9 +39,40 @@ class App extends Component {
         <HeaderContainer />
         <Navbar />
         <Content>
-          <Route path="/dialogs" component={DialogsContainer} />
-          <Route path="/profile/:userId?" component={ProfileContainer} />
-          <Route path="/users" component={UsersContainer} />
+          {/* <Route path="/dialogs" component={DialogsContainer} /> */}
+          <Route
+            path="/dialogs"
+            render={() => {
+              return (
+                <Suspense fallback={<div>Loading...</div>}>
+                  <DialogsContainer />
+                </Suspense>
+              );
+            }}
+          />
+
+          {/* <Route path="/profile/:userId?" component={ProfileContainer} /> */}
+          <Route
+            path="/profile/:userId?"
+            render={() => {
+              return (
+                <Suspense fallback={<div>Loading...</div>}>
+                  <ProfileContainer />
+                </Suspense>
+              );
+            }}
+          />
+          {/* <Route path="/users" component={UsersContainer} /> */}
+          <Route
+            path="/users"
+            render={() => {
+              return (
+                <Suspense fallback={<div>Loading...</div>}>
+                  <UsersContainer />
+                </Suspense>
+              );
+            }}
+          />
           <Route path="/login" component={LoginConnect} />
         </Content>
       </Wrapper>
@@ -48,7 +91,6 @@ export const AppContainer = compose(
     }
   )
 )(App);
-
 
 const Wrapper = styled.div`
   margin: 0 auto;
