@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 import { NavLink } from "react-router-dom";
 import Network from "@assets/Network.png";
 
+
 export const Header = ({ isAuth, login, loginOut }) => {
   return (
     <Wrap>

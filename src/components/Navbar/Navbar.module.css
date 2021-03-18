@@ -1,14 +1,35 @@
 .nav {
-    grid-area: n;
-    background-color: burlywood;
-    padding: 20px;
+  grid-area: n;
+  background-color: burlywood;
+  padding: 20px;
+
 }
 
 .item a {
-    color: white;
-    text-decoration: none;
+  color: white;
+  text-decoration: none;
+}
+.item a:hover {
+  animation-name: example;
+  animation-duration: 2s;
+  text-decoration: none;
+}
+
+@keyframes example {
+  0% {
+    color: rgb(0, 204, 255);
+    padding-left: 0px;
+  }
+  50% {
+    color: blue;
+    padding-left: 5px;
+  }
+  100% {
+    color: black;
+    padding-left: 0px;
+  }
 }
 
 .item a.activeLink {
-    color: gold;
+  color: gold;
 }

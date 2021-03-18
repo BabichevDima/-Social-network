@@ -40,10 +40,13 @@ class App extends Component {
         <HeaderContainer />
         <Navbar />
         <Content>
-          <Route path="/dialogs" render={withReactSuspense(DialogsContainer)} />
+          <Route
+            path="/dialogs"
+            component={withReactSuspense(DialogsContainer)}
+          />
           <Route
             path="/profile/:userId?"
-            render={withReactSuspense(ProfileContainer)}
+            component={withReactSuspense(ProfileContainer)}
           />
           <Route
             path="/users"
@@ -55,7 +58,7 @@ class App extends Component {
               );
             }}
           />
-          <Route path="/login" component={LoginConnect} />
+          <Route path="/login" component={withReactSuspense(LoginConnect)} />
         </Content>
       </Wrapper>
     );
