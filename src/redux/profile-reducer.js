@@ -5,6 +5,7 @@ const ADD_POST = "network/profilePage/ADD-POST";
 const SET_USER_PROFILE = "network/profilePage/SET-USER-PROFILE";
 const SET_STATUS = "network/profilePage/SET-STATUS";
 const DELETE_POST = "network/profilePage/DELETE-POST";
+const SAVE_PHOTO_SUCCESS = "network/profilePage/SAVE-PHOTO";
 
 const initialState = {
   posts: [
@@ -39,6 +40,9 @@ export const profileReducer = (state = initialState, action) => {
     case SET_STATUS:
       return { ...state, status: action.status };
 
+    case SAVE_PHOTO_SUCCESS:
+      return { ...state, profile: { ...state.profile, photos: action.photos } };
+
     default:
       return state;
   }
@@ -52,6 +56,11 @@ export const addPostActionCreator = (newPost) => ({
 export const deletePostActionCreator = (postId) => ({
   type: DELETE_POST,
   postId,
+});
+
+export const savePhotoSuccess = (photos) => ({
+  type: SAVE_PHOTO_SUCCESS,
+  photos,
 });
 
 export const setUsersProfile = (profile) => ({
@@ -78,5 +87,12 @@ export const updateStatus = (status) => async (dispatch) => {
   const data = await profileAPI.updateStatus(status);
   if (data.resultCode === 0) {
     dispatch(setStatus(status));
+  }
+};
+
+export const savePhoto = (file) => async (dispatch) => {
+  const data = await profileAPI.savePhoto(file);
+  if (data.resultCode === 0) {
+    dispatch(savePhotoSuccess(data.data.photos));
   }
 };

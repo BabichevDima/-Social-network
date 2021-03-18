@@ -88,5 +88,5 @@ const Wrapper = styled.div`
 
 const Content = styled.div`
   grid-area: c;
-  background-color: cornflowerblue;
+  background-color: #c0c0c0;
 `;
