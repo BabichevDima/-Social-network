@@ -25,6 +25,7 @@ export const ProfileStatus = ({ status, updateStatus }) => {
     <div>
       {!editMode ? (
         <div>
+          <b>Status:</b>
           <span onDoubleClick={activateMode}>
             {status || "--- No status ---"}
           </span>

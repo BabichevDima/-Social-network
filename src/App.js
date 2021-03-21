@@ -2,11 +2,6 @@ import React, { Component, Suspense } from "react";
 import "./App.css";
 import { HeaderContainer } from "./components/Header";
 import { Navbar } from "./components/Navbar";
-
-// import { ProfileContainer } from "./components/Profile";
-// import { DialogsContainer } from "./components/Dialogs";
-// import { UsersContainer } from "./components/Users";
-
 import { Route, withRouter } from "react-router-dom";
 import styled from "@emotion/styled";
 import { LoginConnect } from "./components/Login";
