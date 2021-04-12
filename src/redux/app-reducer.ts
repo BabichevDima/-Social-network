@@ -6,7 +6,12 @@ const initialState = {
   initialized: false,
 };
 
-export const appReducer = (state = initialState, action) => {
+export type InitialStateType = typeof initialState;
+
+export const appReducer = (
+  state = initialState,
+  action: any
+): InitialStateType => {
   switch (action.type) {
     case INITIALIZED_SUCCESS:
       return {
@@ -19,11 +24,14 @@ export const appReducer = (state = initialState, action) => {
   }
 };
 
-export const setInitializedSuccess = () => ({
+type SetInitializedSuccess = {
+  type: typeof INITIALIZED_SUCCESS;
+};
+export const setInitializedSuccess = (): SetInitializedSuccess => ({
   type: INITIALIZED_SUCCESS,
 });
 
-export const initializeApp = () => async (dispatch) => {
+export const initializeApp = () => async (dispatch: any) => {
   const promise = await dispatch(getAuthUserData());
   dispatch(setInitializedSuccess());
 };
