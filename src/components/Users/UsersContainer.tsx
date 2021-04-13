@@ -1,14 +1,29 @@
 import React from "react";
 import { connect } from "react-redux";
+// import {
+//   follow,
+//   unfollow,
+//   toggleFollowingProgress,
+//   requestUsers,
+// } from "@redux/users-reducer";
 import {
   follow,
   unfollow,
   toggleFollowingProgress,
   requestUsers,
-} from "@redux/users-reducer";
+} from "../../redux/users-reducer";
 import { Users } from "./Users";
-import { Preloader } from "@common/Preloader";
+// import { Preloader } from "@common/Preloader";
+import { Preloader } from "../common/Preloader";
 import { compose } from "redux";
+// import {
+//   getUsers,
+//   getPageSize,
+//   getTotalUsersCount,
+//   getCurrentPage,
+//   getIsFetching,
+//   getFollowingInProgress,
+// } from "@redux/users-selectors";
 import {
   getUsers,
   getPageSize,
@@ -16,15 +31,30 @@ import {
   getCurrentPage,
   getIsFetching,
   getFollowingInProgress,
-} from "@redux/users-selectors";
+} from "../../redux/users-selectors";
+import { UsersType } from "../../Type/Type";
+import { AppStateType } from "../../redux/redux-store";
 
-class UsersAPI extends React.Component {
+type PropsType = {
+  pageTitle: string;
+  currentPage: number;
+  pageSize: number;
+  isFetching: boolean;
+  totalUsersCount: number;
+  users: Array<UsersType>;
+  followingInProgress: Array<number>;
+  unfollow: (userId: number) => void;
+  follow: (userId: number) => void;
+  requestUsers: (currentPage: number, pageSize: number) => void;
+};
+
+class UsersAPI extends React.Component<PropsType> {
   componentDidMount() {
     const { currentPage, pageSize } = this.props;
     this.props.requestUsers(currentPage, pageSize);
   }
 
-  onPageChanged = (pageNumber) => {
+  onPageChanged = (pageNumber: number) => {
     const { pageSize } = this.props;
     this.props.requestUsers(pageNumber, pageSize);
   };
@@ -32,6 +62,7 @@ class UsersAPI extends React.Component {
   render() {
     return (
       <>
+        <h2>{this.props.pageTitle}</h2>
         <div>{this.props.isFetching ? <Preloader /> : null}</div>
         <Users
           totalUsersCount={this.props.totalUsersCount}
@@ -50,7 +81,7 @@ class UsersAPI extends React.Component {
 
 const UsersContainer = compose(
   connect(
-    (state) => ({
+    (state: AppStateType) => ({
       users: getUsers(state),
       pageSize: getPageSize(state),
       totalUsersCount: getTotalUsersCount(state),
@@ -67,4 +98,4 @@ const UsersContainer = compose(
   )
 )(UsersAPI);
 
-export default UsersContainer
+export default UsersContainer;

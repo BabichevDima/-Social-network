@@ -1,8 +1,21 @@
 import React from "react";
 import { User } from "./User";
-import { PaginationBasic } from "@common/Pagination";
+// import { PaginationBasic } from "@common/Pagination";
+import { PaginationBasic } from "../common/Pagination";
+import { UsersType } from "../../Type/Type";
 
-export const Users = ({
+type PropsType = {
+  currentPage: number;
+  onPageChanged: (pageNumber: number) => void;
+  totalUsersCount: number;
+  pageSize: number;
+  users: Array<UsersType>;
+  followingInProgress: Array<number>;
+  follow: (userId: number) => void;
+  unfollow: (userId: number) => void;
+};
+
+export const Users: React.FC<PropsType> = ({
   currentPage,
   onPageChanged,
   totalUsersCount,
@@ -19,7 +32,6 @@ export const Users = ({
         onPageChanged={onPageChanged}
         totalUsersCount={totalUsersCount}
         pageSize={pageSize}
-        currentPage={currentPage}
       />
       <div>
         {users.map((u) => {

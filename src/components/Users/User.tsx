@@ -3,14 +3,21 @@ import styled from "@emotion/styled";
 import UserImg from "@assets/User.png";
 import { NavLink } from "react-router-dom";
 import Button from "react-bootstrap/Button";
+import { UsersType } from "../../Type/Type";
 
-export const User = ({ user, followingInProgress, follow, unfollow }) => {
-  const [isLoading, setLoading] = useState(false);
+type PropsType = {
+  user: UsersType;
+  followingInProgress: Array<number>;
+  follow: (userId: number) => void;
+  unfollow: (userId: number) => void;
+};
 
-  const handleClick = () => {
-    setLoading(true);
-  };
-
+export const User: React.FC<PropsType> = ({
+  user,
+  followingInProgress,
+  follow,
+  unfollow,
+}) => {
   return (
     <div>
       <div>
@@ -26,14 +33,11 @@ export const User = ({ user, followingInProgress, follow, unfollow }) => {
         {user.followed ? (
           <Button
             variant="primary"
-            onClick={!isLoading ? () => handleClick() : null}
             disabled={followingInProgress.some((id) => id === user.id)}
             onClick={() => {
               unfollow(user.id);
             }}
-          >
-            {isLoading ? "Loading…" : "Unfollow"}
-          </Button>
+          ></Button>
         ) : (
           <Button
             variant="light"
@@ -59,18 +63,3 @@ const Img = styled.img`
   height: 100px;
   border-radius: 50%;
 `;
-
-// function NetworkRequest() {
-//   return new Promise((resolve) => {
-//     props.unfollow(u.id);
-//     return resolve;
-//   });
-// }
-
-// useEffect(() => {
-//   if (isLoading) {
-//     NetworkRequest().then(() => {
-//       setLoading(false);
-//     });
-//   }
-// }, [isLoading]);

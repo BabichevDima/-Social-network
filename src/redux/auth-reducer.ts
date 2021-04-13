@@ -4,13 +4,6 @@ import { stopSubmit } from "redux-form";
 
 const SET_USER_DATA = "network/auth/SET-USER-DATA";
 
-// export type InitialStateType = {
-//   id: Number | null;
-//   email: string | null;
-//   login: string | null;
-//   isAuth: boolean;
-// };
-
 const initialState = {
   id: null as null | number,
   email: null as null | string,

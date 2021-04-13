@@ -2,37 +2,13 @@ import { usersAPI } from "../api/index";
 import { profileAPI } from "../api/index";
 import { stopSubmit } from "redux-form";
 
+import { PostType, ProfileType } from "../Type/Type";
+
 const ADD_POST = "network/profilePage/ADD-POST";
 const SET_USER_PROFILE = "network/profilePage/SET-USER-PROFILE";
 const SET_STATUS = "network/profilePage/SET-STATUS";
 const DELETE_POST = "network/profilePage/DELETE-POST";
 const SAVE_PHOTO_SUCCESS = "network/profilePage/SAVE-PHOTO";
-
-type PostType = { id: number; message: string; likesCount: number };
-
-type PhotosType = {
-  small: string | null;
-  large: string | null;
-};
-type ContactsType = {
-  github: string;
-  vk: string;
-  facebook: string;
-  instagram: string;
-  twitter: string;
-  website: string;
-  youtube: string;
-  mainLink: string;
-};
-
-type ProfileType = {
-  userId: number;
-  lookingForAJob: boolean;
-  lookingForAJobDescription: string;
-  fullName: string;
-  contacts: ContactsType;
-  photos: PhotosType;
-};
 
 const initialState = {
   posts: [

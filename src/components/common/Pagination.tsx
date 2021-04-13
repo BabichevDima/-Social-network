@@ -1,7 +1,14 @@
 import React, { useState } from "react";
 import Pagination from "react-bootstrap/Pagination";
 
-export const PaginationBasic = ({
+type PropsType = {
+  onPageChanged: (number: number) => void;
+  totalUsersCount: number;
+  pageSize: number;
+  portionSize?: number;
+};
+
+export const PaginationBasic: React.FC<PropsType> = ({
   onPageChanged,
   totalUsersCount,
   pageSize,
