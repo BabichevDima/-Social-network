@@ -37,7 +37,9 @@ export const User: React.FC<PropsType> = ({
             onClick={() => {
               unfollow(user.id);
             }}
-          ></Button>
+          >
+            Unfollow
+          </Button>
         ) : (
           <Button
             variant="light"

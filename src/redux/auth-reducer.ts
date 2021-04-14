@@ -1,5 +1,5 @@
 // import { authAPI } from "@api";
-import { authAPI } from "../api";
+import { authAPI, ResultCodeEnum } from "../api";
 import { stopSubmit } from "redux-form";
 
 const SET_USER_DATA = "network/auth/SET-USER-DATA";
@@ -53,7 +53,7 @@ export const setAuthUserData = (
 export const getAuthUserData = () => async (dispatch: any) => {
   const data = await authAPI.me();
 
-  if (data.resultCode === 0) {
+  if (data.resultCode === ResultCodeEnum.Success) {
     const { id, email, login } = data.data;
     dispatch(setAuthUserData(id, email, login, true));
   }
@@ -64,15 +64,12 @@ export const Login = (
   password: string,
   rememberMe: boolean
 ) => async (dispatch: any) => {
-  const response = await authAPI.login(email, password, rememberMe);
+  const data = await authAPI.login(email, password, rememberMe);
 
-  if (response.data.resultCode === 0) {
+  if (data.resultCode === ResultCodeEnum.Success) {
     dispatch(getAuthUserData());
   } else {
-    const message =
-      response.data.messages.length > 0
-        ? response.data.messages[0]
-        : "Some error";
+    const message = data.messages.length > 0 ? data.messages[0] : "Some error";
     dispatch(stopSubmit("login", { _error: message }));
   }
 };

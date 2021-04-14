@@ -1,7 +1,13 @@
 import React from "react";
 import styled from "@emotion/styled";
+import { MessageType } from "../../Type/Type";
 
-export const Post = ({ message, likesCount }) => {
+type PropsType = {
+  message: MessageType;
+  likesCount: number;
+};
+
+export const Post: React.FC<PropsType> = ({ message, likesCount }) => {
   return (
     <Wrap>
       <Img
